@@ -1,0 +1,2 @@
+public class att2 {
+}
