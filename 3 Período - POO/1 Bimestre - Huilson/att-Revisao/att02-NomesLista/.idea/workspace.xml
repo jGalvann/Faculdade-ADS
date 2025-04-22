@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2887acdd-528c-4b35-b1bb-51c5e58f80dc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../aula17marc/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aula17marc/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aula17marc/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aula17marc/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aula17marc/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aula17marc/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aula17marc/aula17marc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../aula17marc/src/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crudFesta - Huilson/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crudFesta - Huilson/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crudFesta - Huilson/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crudFesta - Huilson/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crudFesta - Huilson/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crudFesta - Huilson/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crudFesta - Huilson/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crudFesta - Huilson/crudFesta.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crudFesta - Huilson/src/Convidado.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crudFesta - Huilson/src/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/fibonacci.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/src/Pessoa.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/src/fibonacci.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/src/form.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../fibonacci/src/recursao.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pedraPapel/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pedraPapel/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pedraPapel/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pedraPapel/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pedraPapel/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pedraPapel/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pedraPapel/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pedraPapel/pedraPapel.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pedraPapel/src/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pedraPapel/src/att-02.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/src/ex-01.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/src/ex-02.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/src/ex-03.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/src/ex-04.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/src/ex-05.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../untitled/untitled.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "jGalvann"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/jGalvann/Faculdade-ADS.git",
+    "accountId": "558efd7c-6f8d-4564-b4e8-10dcccbafaef"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2vKLPj5T3CfRvBdMJJ3TAbuVmkd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Kotlin.MainKt.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.387" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.387" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2887acdd-528c-4b35-b1bb-51c5e58f80dc" name="Changes" comment="" />
+      <created>1743888798772</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743888798772</updated>
+      <workItem from="1743888799802" duration="109000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

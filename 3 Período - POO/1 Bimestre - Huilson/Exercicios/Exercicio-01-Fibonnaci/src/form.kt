@@ -22,7 +22,7 @@ fun main() {
     println("Informe seu nome")
     p.nome = readln()
     println("Informe sua idade")
-    p.idade = readln()
+    p.idade = readln().toInt()
     println("Informe seu peso")
     val peso = readln().toDouble()
     println("Informe sua altura")
