@@ -158,38 +158,87 @@ private fun editar() : Boolean {
 
 private fun excluir(): Boolean {
     if (validar()) {
-
         listar()
+        var posicao: String
+        val regexNum = Regex("^[0-9]+$")
+        var excluiu = false
 
-        println("Quem deseja remover?")
-        val posicao = readln().toInt()
-        listaConvidados.removeAt(posicao)
-        println("Convidado excluido")
-        return true
+        do {
+            println("Quem deseja remover? (Digite a posição, ou 'N' para cancelar)")
+            posicao = readln().uppercase()
+
+            if (posicao == "N") {
+                println("Exclusão cancelada.")
+                break
+            }
+
+            if (regexNum.matches(posicao)) {
+                try {
+                    val posicao = posicao.toInt()
+                    if (posicao in listaConvidados.indices) {
+                        listaConvidados.removeAt(posicao)
+                        println("Convidado excluído")
+                        excluiu = true
+                        break
+                    } else {
+                        println("Posição inválida, não existe na lista!")
+                    }
+                } catch (e: NumberFormatException) {
+                    println("Posição inválida, digite um número!")
+                }
+            } else {
+                println("Entrada inválida, digite um número ou 'N'.")
+            }
+        } while (!excluiu)
+
+        return excluiu
     }
     return false
 }
+
 
 // questao 4 -  só pode entrar letras na busca
 // e ignorar letrar maiusculas // minusculas
 
-private fun busca() :Boolean {
-    var i = 0 // indice da lista
-    println("Digite o nome da pessoa que voce quer fazer a busca")
-    val busca = readln()
+private fun busca(): Boolean {
+    println("Digite o nome para buscar:")
+    var busca: String
+    val regex = Regex("^[a-zA-ZÀ-ÖØ-ÿ ]+$")
+    var encontradoAlgum = false
 
-    listaConvidados.forEach { convidado ->
-       if( convidado.nome.contains(busca)){
-           println("Posição $i, Nome: ${convidado.nome} vai para a festa")
+    do {
+        busca = readln()
+        if (regex.matches(busca) || busca.isEmpty()) {
+            var encontradoNestaBusca = false
+            listaConvidados.forEachIndexed { index, convidado ->
+                if (convidado.nome.lowercase().contains(busca.lowercase())) {
+                    encontradoNestaBusca = true
+                    encontradoAlgum = true
+                    if (convidado.presenca) {
+                        println("Posição $index, Nome: ${convidado.nome} (Confirmado) vai para a festa")
+                    } else {
+                        println("Posição $index, Nome: ${convidado.nome} (Não Confirmado)")
+                    }
+                }
+            }
+            if (!encontradoNestaBusca && busca.isNotEmpty()) {
+                println("Nenhum convidado com o nome \"$busca\" encontrado.")
+            }
+            break
+        } else {
+            println("Entrada inválida. Digite apenas letras para a busca.")
+            println("Tentar novamente? (S/N)")
+            val tentarNovamente = readln().uppercase()
+            if (tentarNovamente != "S") {
+                break
+            }
+        }
+    } while (true)
 
-           return true
-       }
-       i++
-    }
-    println("A pessoa $busca, não vai para a festa")
-    return false
-
+    return encontradoAlgum
 }
+
+
 
 private fun validar() : Boolean {
     // se estiver vazio == falso
