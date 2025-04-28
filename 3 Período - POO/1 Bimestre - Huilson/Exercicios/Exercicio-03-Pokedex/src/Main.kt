@@ -2,7 +2,69 @@ import TipoPokemon
 import Efetividade
 import Pokemon
 
+const val limitePokemonTime = 6
+val jogadores = mutableListOf<Jogador>()
 
+
+fun main() {
+    do {
+
+        println("== MENU == ")
+        println("-- 1 - Catalogar jogador --  ") // fiz a func que cria o obj
+        println("-- 2 - Catalogar Time -- ") // criar uma func que add na mutableList do obj
+        println("-- 3 - Remover pokemon --  ") // remover da mtblist
+        println("-- 4 - Iniciar batalha  --  ") // escolher 2 jogadores, e começar o duelo de acordo com oq o professor passou
+        println("-- 5 - Listar Jogadores  --  ") // mostra o jogador ( nome e lista o time )
+        println("-- 0 - Sair -- ")
+
+        val opcao = readln()
+        when(opcao.toInt()) {
+
+            1 -> {
+                val jogador = cadastrar()
+                jogadores.add(jogador) // deixa guardado o novo jogador na memória.
+                println("o jogador ${jogador.nome} foi cadastrado com sucesso")
+            }
+
+
+        }
+
+
+
+    }while (opcao != "0" )
+
+
+
+
+
+
+}
+
+private fun cadastrar() : Jogador{
+
+    val regex = Regex("^[A-ZÀ-ÖØ-Ÿ][a-zà-ÿ ]+\$") // primeira letra maiuscula, e sem numeros, para o nome
+    var nome: String
+
+    do{
+        println("Qual o nome do jogador?")
+        nome = readln()
+
+        if (!regex.matches(nome)){
+            println("Coloque um nome valido para o jogador")
+        }
+
+
+    } while (!regex.matches(nome))
+
+    val jogador = Jogador(nome, mutableListOf())
+
+    return jogador
+}
+
+
+
+/*
+ aqui tinha sido do primeiro trabalho. ( não havia sido pedido esta parte. )
 
 fun main() {
     val efetividade = Efetividade()
@@ -34,3 +96,5 @@ fun main() {
         println("\nPokémon não encontrado na Pokédex.")
     }
 }
+
+ */
