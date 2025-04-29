@@ -5,6 +5,7 @@ class Pokemon ( // passando os parametros para cade pokemon ser uma classe
     val tipoPrimario: TipoPokemon,
     val tipoSecundario: TipoPokemon? = null
 ){
+
     companion object {
         val todosPoke = mapOf(
             "bulbasaur" to Pokemon(1, "Bulbasaur", TipoPokemon.Planta, TipoPokemon.Venenoso),

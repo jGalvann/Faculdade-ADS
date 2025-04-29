@@ -30,9 +30,6 @@ class Jogador ( val nome: String, var timePokemon: MutableList<Pokemon>) {
                 println(" - ${pokemon.nome} do tipo ${pokemon.tipoPrimario} / ${pokemon.tipoSecundario}")
             }
         }
-
-
-
-
     }
 }
+

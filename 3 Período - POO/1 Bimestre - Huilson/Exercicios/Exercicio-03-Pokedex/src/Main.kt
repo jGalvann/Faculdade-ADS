@@ -25,7 +25,20 @@ fun main() {
                 jogadores.add(jogador) // deixa guardado o novo jogador na memória.
                 println("o jogador ${jogador.nome} foi cadastrado com sucesso")
             }
+            2 -> {
+                println("No time de qual jogador deseja adicionar pokemons?")
+                println("Jogadores disponíveis:")
+                for (pessoa in jogadores) { println(pessoa.nome) }
+                catalogarTime(readln())
 
+            }
+            3 -> {
+                removerPkmTime()
+            }
+            4 -> {}
+            5 -> {
+                showTimePk()
+            }
 
         }
 
@@ -60,6 +73,109 @@ private fun cadastrar() : Jogador{
 
     return jogador
 }
+
+private fun catalogarTime(reposta:String){
+
+
+    val jogador = jogadores.find { it.nome.equals(reposta, ignoreCase = true) }
+
+    if (jogador == null) {
+        println("Jogador não encontrado")
+        return
+    }
+
+    while (jogador.timePokemon.size < limitePokemonTime){
+
+        println("Qual pokemon deseja adicionar ao seu time?")
+        val guardarNomePk = readln().lowercase()
+
+        val pokemonAdicionar = Pokemon.todosPoke[guardarNomePk] // tem que fzr isso pq a var de cima é uma string e esse retorna um obj
+
+        if (pokemonAdicionar != null) {
+            jogador.addPokemon(pokemonAdicionar)
+        }else{
+            println("Pokemon `$guardarNomePk` não foi encontrado na pokedex")
+        }
+
+        println("Deseja continuar a adicionar pokemons?")
+        println("s / n")
+        val resposta = readln()
+        if (resposta!= "s") break // forma expressiva de usar o if em kotlin
+
+
+    }
+
+    if (jogador.timePokemon.size == limitePokemonTime) {
+        println("time pokemon completo!")
+    }
+
+
+}
+
+private fun removerPkmTime() {
+
+    println("No time de qual jogador será feita a mudança?")
+    for (imundo in jogadores){
+        println("- ${imundo.nome}")
+    }
+    var resposta = readln()
+    val jogadorEscolhido = jogadores.find { it.nome.equals(resposta, ignoreCase = true) }
+
+    if (jogadorEscolhido == null){
+        println("Jogador não encontrado, escreva direito:")
+        return
+    } else {
+        println("Qual pokemon deseja remover do time?")
+        for (poke in jogadorEscolhido.timePokemon) {
+            println(poke.nome)
+        }
+        resposta = readln() // é string quem q transformar em obj
+        val pokemonRemover = jogadorEscolhido.timePokemon.find { it.nome.equals(resposta, ignoreCase = true) }
+        if (pokemonRemover == null){
+            println("pokemon não existe, tente novamente.")
+        } else{
+            jogadorEscolhido.timePokemon.remove(pokemonRemover)
+            println("o pokemon ${pokemonRemover.nome} foi removido do time.")
+        }
+    }
+
+
+
+
+
+
+}
+
+private fun showTimePk(){
+    if (jogadores.isEmpty()){
+        println("nenhum jogador cadastrado")
+        return
+    }
+    println("Jogadores cadastrados")
+    // como as listas não são grandes ( a de pokemon tem no max 6 )
+    // acho que não tem problema iterar sobre iteração, pq fica O(n * m ) ent n é mto ruim eu acho
+    // e dava para usar for tbm, mas quis diferenciar
+    jogadores.forEach { jogador ->
+             println(jogador.nome)
+        if (jogador.timePokemon.isEmpty()){
+            println("o time se encontra vazio!")
+        } else {
+            jogador.timePokemon.forEach{ pokemon ->
+                val tipagem = when {
+                    pokemon.tipoSecundario != null -> "${pokemon.tipoPrimario}, ${pokemon.tipoSecundario}"
+                    else -> pokemon.tipoPrimario.toString()
+                }
+                println(" ${pokemon.nome} - $tipagem")
+            }
+        }
+        println("----------------------------------------")
+    }
+
+
+
+}
+
+
 
 
 
