@@ -10,7 +10,7 @@ class Jogador ( val nome: String, var timePokemon: MutableList<Pokemon>) {
         }
     }
 
-
+// não estou usando
     fun removerPokemon(pokemon: Pokemon) {
         if (timePokemon.size > 1) {
             timePokemon.remove(pokemon)
@@ -20,7 +20,7 @@ class Jogador ( val nome: String, var timePokemon: MutableList<Pokemon>) {
         }
     }
 
-
+// não ta usando tbm
     fun mostrarTime() {
         println("Time de $nome ")
         if (timePokemon.isEmpty()){

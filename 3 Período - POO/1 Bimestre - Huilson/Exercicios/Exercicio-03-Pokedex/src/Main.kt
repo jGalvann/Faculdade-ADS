@@ -118,14 +118,22 @@ private fun removerPkmTime() {
     for (imundo in jogadores){
         println("- ${imundo.nome}")
     }
+
     var resposta = readln()
     val jogadorEscolhido = jogadores.find { it.nome.equals(resposta, ignoreCase = true) }
 
-    if (jogadorEscolhido == null){
+    if (jogadorEscolhido == null) {
         println("Jogador não encontrado, escreva direito:")
         return
-    } else {
-        println("Qual pokemon deseja remover do time?")
+    }
+
+    if(jogadorEscolhido.timePokemon.isEmpty()) {
+        println("o time do ${jogadorEscolhido.nome} se encontra vazio!")
+        return
+    }
+
+
+    println("Qual pokemon deseja remover do time?")
         for (poke in jogadorEscolhido.timePokemon) {
             println(poke.nome)
         }
@@ -138,13 +146,6 @@ private fun removerPkmTime() {
             println("o pokemon ${pokemonRemover.nome} foi removido do time.")
         }
     }
-
-
-
-
-
-
-}
 
 private fun showTimePk(){
     if (jogadores.isEmpty()){

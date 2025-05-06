@@ -3,12 +3,14 @@ class Pokemon ( // passando os parametros para cade pokemon ser uma classe
     val numPokedex: Int,
     val nome : String,
     val tipoPrimario: TipoPokemon,
-    val tipoSecundario: TipoPokemon? = null
+    val tipoSecundario: TipoPokemon? = null,
+    val vida: Int,
+    val moveSpd: Int
 ){
 
     companion object {
         val todosPoke = mapOf(
-            "bulbasaur" to Pokemon(1, "Bulbasaur", TipoPokemon.Planta, TipoPokemon.Venenoso),
+            "bulbasaur" to Pokemon(1, "Bulbasaur", TipoPokemon.Planta, TipoPokemon.Venenoso,),
             "ivysaur" to Pokemon(2, "Ivysaur", TipoPokemon.Planta, TipoPokemon.Venenoso),
             "venusaur" to Pokemon(3, "Venusaur", TipoPokemon.Planta, TipoPokemon.Venenoso),
             "charmander" to Pokemon(4, "Charmander", TipoPokemon.Fogo, null),
