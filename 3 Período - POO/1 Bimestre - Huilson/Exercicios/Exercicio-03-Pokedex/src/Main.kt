@@ -89,10 +89,15 @@ private fun catalogarTime(reposta:String){
         println("Qual pokemon deseja adicionar ao seu time?")
         val guardarNomePk = readln().lowercase()
 
+
         val pokemonAdicionar = Pokemon.todosPoke[guardarNomePk] // tem que fzr isso pq a var de cima é uma string e esse retorna um obj
 
-        if (pokemonAdicionar != null) {
-            jogador.addPokemon(pokemonAdicionar)
+        // aqui o motivo de usar data class
+        if (pokemonAdicionar != null) { // checa se o pokeon existe.
+            val copia = pokemonAdicionar.copy() // cria uma nova instância do pokemon.
+            copia.atribuirAtaques() // usa a func para atribuir os atks com base nos tipos
+            jogador.addPokemon(copia) // add o pokemon no time do jogador.
+
         }else{
             println("Pokemon `$guardarNomePk` não foi encontrado na pokedex")
         }
@@ -162,11 +167,13 @@ private fun showTimePk(){
             println("o time se encontra vazio!")
         } else {
             jogador.timePokemon.forEach{ pokemon ->
-                val tipagem = when {
+                val tipagem =
+                    when {
                     pokemon.tipoSecundario != null -> "${pokemon.tipoPrimario}, ${pokemon.tipoSecundario}"
                     else -> pokemon.tipoPrimario.toString()
                 }
-                println(" ${pokemon.nome} - $tipagem")
+                println(" - ${pokemon.nome} - $tipagem ")
+                println(" Ataques - ${pokemon.ataques.joinToString { it.nome  }}")
             }
         }
         println("----------------------------------------")
@@ -175,6 +182,9 @@ private fun showTimePk(){
 
 
 }
+
+
+
 
 
 
