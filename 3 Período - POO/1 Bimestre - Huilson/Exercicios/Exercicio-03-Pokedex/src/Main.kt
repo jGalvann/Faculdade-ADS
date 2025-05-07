@@ -35,7 +35,20 @@ fun main() {
             3 -> {
                 removerPkmTime()
             }
-            4 -> {}
+            4 -> {
+                if (jogadores.size < 2) {
+                    println("é necessário pelo menos 2 jogadores para iniciar a batalha!!")
+                } else {
+                    val jogador1 = escolherJogador(" Jogador 1")
+                    if (jogador1 != null) {
+                        val jogador2 = escolherJogador("Jogador 2")
+                        if (jogador2 != null) {
+                            val batalha = Batalha(jogador1, jogador2)
+                            batalha.iniciarBatalha()
+                        }
+                    }
+                }
+            }
             5 -> {
                 showTimePk()
             }
@@ -183,7 +196,20 @@ private fun showTimePk(){
 
 }
 
-
+fun escolherJogador(entrada: String): Jogador? {
+    println(" Escolha o $entrada para a batalha:")
+    jogadores.forEachIndexed { index, jogador ->
+        println("${index + 1}. ${jogador.nome}")
+    }
+    print("Digite o número do jogador: ")
+    val escolha = readlnOrNull()?.toIntOrNull()
+    if (escolha != null && escolha in 1..jogadores.size) {
+        return jogadores[escolha - 1]
+    } else {
+        println("Escolha inválida.")
+        return null
+    }
+}
 
 
 

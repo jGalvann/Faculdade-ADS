@@ -22,14 +22,12 @@ class Jogador ( val nome: String, var timePokemon: MutableList<Pokemon>) {
 
 // não ta usando tbm
     fun mostrarTime() {
-        println("Time de $nome ")
-        if (timePokemon.isEmpty()){
-            println("O time se encontra vazio ")
-        } else {
-            for (pokemon in timePokemon) {
-                println(" - ${pokemon.nome} do tipo ${pokemon.tipoPrimario} / ${pokemon.tipoSecundario}")
+
+    timePokemon.forEachIndexed { index, pokemon ->
+        println("${index + 1}. ${pokemon.nome} (${pokemon.tipoPrimario}${if (pokemon.tipoSecundario != null) 
+            ", ${pokemon.tipoSecundario}" else ""})")
+
             }
         }
     }
-}
 

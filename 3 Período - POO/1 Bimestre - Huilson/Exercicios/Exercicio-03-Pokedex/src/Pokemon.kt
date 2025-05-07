@@ -12,8 +12,8 @@ data class Pokemon ( // passando os parametros para cade pokemon ser uma classe
     val nome : String,
     val tipoPrimario: TipoPokemon,
     val tipoSecundario: TipoPokemon? = null,
-    val vida: Int,
-    val moveSpd: Int
+    var vida: Int,
+    var moveSpd: Int
 ){
     val ataques: MutableList<Ataque> = mutableListOf()
 
@@ -51,8 +51,7 @@ data class Pokemon ( // passando os parametros para cade pokemon ser uma classe
         }
     }
 
-
-    fun multiplicadorDeDano
+    fun multiplicadorDeDano // add caso n os pkm nao tenham efetividade ( eletric x ground )
                 (tipoAtaque: TipoPokemon?, tipoPrimarioOponente: TipoPokemon, tipoSecundarioOponente: TipoPokemon?): Double {
 
         if (tipoAtaque == null) return 1.0 // atk normal -> n muda dano
@@ -80,6 +79,7 @@ data class Pokemon ( // passando os parametros para cade pokemon ser uma classe
 
         return multiplicador
     }
+
 
 
 
@@ -225,7 +225,7 @@ data class Pokemon ( // passando os parametros para cade pokemon ser uma classe
             "omanyte" to Pokemon(138, "Omanyte", TipoPokemon.Pedra, TipoPokemon.Agua, 6, 5),
             "omastar" to Pokemon(139, "Omastar", TipoPokemon.Pedra, TipoPokemon.Agua, 10, 10),
             "kabuto" to Pokemon(140, "Kabuto", TipoPokemon.Pedra, TipoPokemon.Agua, 6, 5),
-            "kabutops" to Pokemon(141, "Kabutops", TipoPokemon.Planta, TipoPokemon.Agua, 10, 15),
+            "kabutops" to Pokemon(141, "Kabutops", TipoPokemon.Pedra, TipoPokemon.Agua, 10, 15),
             "aerodactyl" to Pokemon(142, "Aerodactyl", TipoPokemon.Pedra, TipoPokemon.Voador, 10, 20),
             "snorlax" to Pokemon(143, "Snorlax", TipoPokemon.Normal, null, 15, 5),
             "articuno" to Pokemon(144, "Articuno", TipoPokemon.Gelo, TipoPokemon.Voador, 12, 35),
