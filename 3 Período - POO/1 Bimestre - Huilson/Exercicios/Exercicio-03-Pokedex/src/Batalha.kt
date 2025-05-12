@@ -11,7 +11,7 @@ class Batalha(val jogador1: Jogador, val jogador2: Jogador) {
         if (!verificarTime()) return
 
         pokemonEmCampoJ1 = escolherPokemon(jogador1)
-        if (pokemonEmCampoJ1 == null ) return
+        if (pokemonEmCampoJ1 == null ) return // quer dizer q n tem pokemon
 
         pokemonEmCampoJ2 = escolherPokemon(jogador2)
         if(pokemonEmCampoJ2 == null) return
@@ -36,19 +36,6 @@ class Batalha(val jogador1: Jogador, val jogador2: Jogador) {
         }
 
         return true
-    }
-
-    private fun escolherPrimeiroPoke(jogador: Jogador): Pokemon? {
-        println(" ${jogador.nome} escolha o seu primeiro pokemon a entrar em campo! ")
-        jogador.mostrarTime()
-        println("Qual o número do pokemon escolhido?")
-        val escolha = readlnOrNull()?.toIntOrNull()
-        if (escolha != null && escolha in 1..jogador.timePokemon.size){
-            return jogador.timePokemon[escolha -1]
-        } else  {
-            println("escolha invalida.")
-            return null
-        }
     }
 
     private fun escolherAtaque(jogador: Jogador, pokemon: Pokemon): Ataque? {
@@ -76,7 +63,7 @@ class Batalha(val jogador1: Jogador, val jogador2: Jogador) {
         val segundoPokemon : Pokemon
         val segundoAtaque: Ataque
 
-        if (pokemonEmCampoJ1!!.moveSpd >= pokemonEmCampoJ2!!.moveSpd){
+        if (pokemonEmCampoJ1!!.moveSpd >= pokemonEmCampoJ2!!.moveSpd){ // os !! querem dizer -> essa variavel, a esse ponto NÃO PODE ser null.
             primeiroJogador = jogador1
             primeiroPokemon = pokemonEmCampoJ1!!
             primeiroAtaque = ataqueJogador1
@@ -180,7 +167,7 @@ class Batalha(val jogador1: Jogador, val jogador2: Jogador) {
                     pokemonEmCampoJ1 = proximoPokemon
                     println("o ${jogador1.nome} enviou ${pokemonEmCampoJ1?.nome}!")
                 } else {
-                    println("o ${jogador1.nome} não tem mais pokemons! ${jogador2.nome} venceu!!")
+                    println("o ${jogador1.nome} não tem mais pokemons!")
                     break
                 }
             }
@@ -191,7 +178,7 @@ class Batalha(val jogador1: Jogador, val jogador2: Jogador) {
                     pokemonEmCampoJ2 = proximoPokemon
                     println("o ${jogador2.nome} enviou ${pokemonEmCampoJ2?.nome}!")
                 } else {
-                    println("o ${jogador2.nome} não tem mais pokemons! ${jogador1.nome} venceu!!")
+                    println("o ${jogador2.nome} não tem mais pokemons!")
                     break
                 }
 

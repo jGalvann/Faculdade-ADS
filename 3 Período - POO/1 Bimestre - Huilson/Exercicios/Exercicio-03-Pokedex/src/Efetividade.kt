@@ -3,7 +3,7 @@ import TipoPokemon
 class Efetividade {
 
 
-    val vantagens = mapOf(
+    val vantagens = mapOf( // passa o item da classe tipoPokemon como key e cria uma lista das vantagens.
         TipoPokemon.Fogo to listOf(TipoPokemon.Planta, TipoPokemon.Inseto, TipoPokemon.Gelo),
         TipoPokemon.Planta to listOf(TipoPokemon.Terrestre, TipoPokemon.Pedra, TipoPokemon.Agua),
         TipoPokemon.Agua to listOf(TipoPokemon.Fogo, TipoPokemon.Terrestre, TipoPokemon.Fogo),

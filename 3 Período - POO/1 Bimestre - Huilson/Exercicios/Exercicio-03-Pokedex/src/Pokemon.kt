@@ -1,13 +1,8 @@
-// tive que mudar para uma data class.
-/*
- data class tem a função copy() já inclusa.
- eu precisava dessa func para "clonar" os objetos aqui criados para o time dos treinadores, se não
- ex: jogador1 e jogador2 escolheram o mesmo pokemon, da maneira q eu estava fzndo antes, ia ser o mesmo objeto, ou seja
- eles iam dividir o mesmo pokemon, tanto em questão de vida qnto de ataques, ent poderia dar ruim.
 
- funcao data tem algumas características únicas.
- */
-data class Pokemon ( // passando os parametros para cade pokemon ser uma classe
+// tive que usar data class para clonar os objetos criados. Já que diferentes treinadores podem ter o msm pokemon.
+// data class tem umas funções especificas
+data class Pokemon (
+// passando os parametros para cada pokemon ser uma classe
     val numPokedex: Int,
     val nome : String,
     val tipoPrimario: TipoPokemon,
@@ -18,8 +13,8 @@ data class Pokemon ( // passando os parametros para cade pokemon ser uma classe
     val ataques: MutableList<Ataque> = mutableListOf()
 
     fun atribuirAtaques(){
-        if(ataques.isNotEmpty()) return
-        if (tipoPrimario!= TipoPokemon.Normal) {
+        if(ataques.isNotEmpty()) return // se já tiver itens ela retorna.
+        if (tipoPrimario!= TipoPokemon.Normal) { // tipos != normal
             ataques.add(Ataque("Ataque normal", null, 2))
             ataques.add(Ataque("Ataque ${tipoPrimario.toString()}", tipoPrimario, 3))
             tipoSecundario?.let { // let é uma funcao que permite executar algo se o valor que ele fora aplicado não for NULL.
@@ -35,22 +30,6 @@ data class Pokemon ( // passando os parametros para cade pokemon ser uma classe
 
     fun pokemonVivo(): Boolean = vida > 0
 
-    fun escolherAtaque(pokemonEscolhido: Pokemon): Ataque {
-        println("Escolha um dos ataques do ${pokemonEscolhido.nome}:")
-        pokemonEscolhido.ataques.forEachIndexed { index, ataque ->
-            println("${index + 1}. ${ataque.nome}")
-        }
-        while (true) {
-            println("Digite o número do ataque:")
-            val escolha = readln().toInt()
-
-            if(escolha in 1..pokemonEscolhido.ataques.size) {
-                return pokemonEscolhido.ataques[escolha-1]
-            } else{ println("Escolha inválida, tente novamente.") }
-
-        }
-    }
-
     fun multiplicadorDeDano // add caso n os pkm nao tenham efetividade ( eletric x ground )
                 (tipoAtaque: TipoPokemon?, tipoPrimarioOponente: TipoPokemon, tipoSecundarioOponente: TipoPokemon?): Double {
 
@@ -58,13 +37,13 @@ data class Pokemon ( // passando os parametros para cade pokemon ser uma classe
 
         var multiplicador = 1.0
 
-        val efetividade = Efetividade()
+        val efetividade = Efetividade() // instância da classe efetividade.
 
 
         if (efetividade.vantagens[tipoAtaque]?.contains(tipoPrimarioOponente) == true) { // verifica se o tipo do inimigo ta listado nas vantagens
             multiplicador *= 2.0
         } else if (efetividade.vantagens.any { it.value.contains(tipoAtaque) && it.key == tipoPrimarioOponente }) {
-            // verifica se o tipo do oponente tem vantagem contra o ataque.
+            // ve se o ataque é do mesmo tipo, ou tem desvantagem contra o adversário.
             multiplicador *= 0.5
         }
 
@@ -83,8 +62,10 @@ data class Pokemon ( // passando os parametros para cade pokemon ser uma classe
 
 
 
-    companion object {
+    companion object { // em kotlin n tem static - isso substitui .. ent usa isso para criar uma instância interna da classe.
         val todosPoke = mapOf(
+            // esse map pega o nome ( que vai ser um input, por isso em minusculo ) e instancia em um obj da classe de pokemon.
+            // cada um tendo seu próprio atributo.
             "bulbasaur" to Pokemon(1, "Bulbasaur", TipoPokemon.Planta, TipoPokemon.Venenoso, 5, 5),
             "ivysaur" to Pokemon(2, "Ivysaur", TipoPokemon.Planta, TipoPokemon.Venenoso, 8, 15),
             "venusaur" to Pokemon(3, "Venusaur", TipoPokemon.Planta, TipoPokemon.Venenoso, 12, 10),

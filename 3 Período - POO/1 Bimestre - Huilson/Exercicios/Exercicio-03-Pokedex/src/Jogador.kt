@@ -10,17 +10,7 @@ class Jogador ( val nome: String, var timePokemon: MutableList<Pokemon>) {
         }
     }
 
-// não estou usando
-    fun removerPokemon(pokemon: Pokemon) {
-        if (timePokemon.size > 1) {
-            timePokemon.remove(pokemon)
-            println("${pokemon.nome} foi removido do time de $nome.")
-        } else {
-            println("Seu time não possui pokémons suficientes para remover!")
-        }
-    }
 
-// não ta usando tbm
     fun mostrarTime() {
 
     timePokemon.forEachIndexed { index, pokemon ->

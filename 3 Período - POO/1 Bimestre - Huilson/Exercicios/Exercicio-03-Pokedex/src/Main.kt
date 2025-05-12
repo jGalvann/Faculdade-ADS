@@ -1,6 +1,6 @@
-import TipoPokemon
-import Efetividade
-import Pokemon
+//import João Pedro Galvan
+//import Luis Fernando Parizotto
+//import João Vitor Schimitz
 
 const val limitePokemonTime = 6
 val jogadores = mutableListOf<Jogador>()
@@ -18,7 +18,7 @@ fun main() {
         println("-- 0 - Sair -- ")
 
         val opcao = readln()
-        when(opcao.toInt()) {
+        when(opcao.toInt()) { // qndo tal numero chama tal func
 
             1 -> {
                 val jogador = cadastrar()
@@ -68,7 +68,7 @@ fun main() {
 
 private fun cadastrar() : Jogador{
 
-    val regex = Regex("^[A-ZÀ-ÖØ-Ÿ][a-zà-ÿ ]+\$") // primeira letra maiuscula, e sem numeros, para o nome
+    val regex = Regex("^[A-ZÀ-ÖØ-Ÿ][a-zà-ÿ ]+\$") // primeira letra maiuscula, e sem numeros, para o nome n da para usar camel case com esse regex
     var nome: String
 
     do{
@@ -82,7 +82,7 @@ private fun cadastrar() : Jogador{
 
     } while (!regex.matches(nome))
 
-    val jogador = Jogador(nome, mutableListOf())
+    val jogador = Jogador(nome, mutableListOf()) // cria a instância do jogador, com o nome q fora dado e um mutableList vazia.
 
     return jogador
 }
@@ -90,7 +90,7 @@ private fun cadastrar() : Jogador{
 private fun catalogarTime(reposta:String){
 
 
-    val jogador = jogadores.find { it.nome.equals(reposta, ignoreCase = true) }
+    val jogador = jogadores.find { it.nome.equals(reposta, ignoreCase = true) } // it. quer dizer q vc esta usando o item atual, pode ser aplicado para qualquer coisa que guarda algo.
 
     if (jogador == null) {
         println("Jogador não encontrado")
