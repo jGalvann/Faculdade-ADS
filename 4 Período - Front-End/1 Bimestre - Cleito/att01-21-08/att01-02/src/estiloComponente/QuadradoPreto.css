@@ -1,0 +1,9 @@
+.QuadradoPreto {
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  box-sizing: border-box;
+  background-color: #0d0f2c;
+}
+
+

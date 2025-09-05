@@ -62,6 +62,7 @@ data class Pokemon (
 
 
 
+
     companion object { // em kotlin n tem static - isso substitui .. ent usa isso para criar uma instância interna da classe.
         val todosPoke = mapOf(
             // esse map pega o nome ( que vai ser um input, por isso em minusculo ) e instancia em um obj da classe de pokemon.

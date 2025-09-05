@@ -1,0 +1,13 @@
+.Fundo {
+  width: 90vw;
+  height: 90vh;
+  border: 15px solid #0d0f2c;
+  max-width: 1500px;
+  max-height: 1500px;
+  background-color: #0d0f2c;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
