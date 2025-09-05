@@ -14,17 +14,6 @@ function App() {
     <>
       <Checkbox/>
     </>
-
-      // <div className='grade'>
-
-      //   <Like/>
-      //   <ControleNota/>
-      //   <Votacao/>
-      //   <Carrinho/>
-      //   <ConversorTemperatura/>
-      //   <Progresso/>
-
-      // </div>
   )
 }
 
