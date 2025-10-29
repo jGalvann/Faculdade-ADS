@@ -2,8 +2,8 @@ import { useState } from "react"
 
 function Carrinho (){
 
-    const [qntItem, setItem] = useState(1)
-    const [precosItens, setPreco] = useState(50.00)
+    const [qntItem, setItem] = useState(0)
+    const [precosItens, setPreco] = useState(0.00)
 
     function addItem() {
         setItem(qntItem + 1)
@@ -11,7 +11,7 @@ function Carrinho (){
     }
 
     function rmvItem(){
-        if (qntItem == 1){
+        if (qntItem == 0){
             return
         }else {
             setItem(qntItem - 1 )
