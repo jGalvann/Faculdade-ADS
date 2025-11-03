@@ -1,0 +1,30 @@
+package com.kushy.arcadia.entity
+
+import jakarta.persistence.*
+
+@Entity
+@Table(name = "wishlist", uniqueConstraints = [
+    // @UniqueConstraint: Evita que um User adicione o MESMO Game duas vezes na Wishlist.
+    UniqueConstraint(columnNames = ["user_id", "game_id"])
+])
+class Wishlist(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+
+    // CHAVES ESTRANGEIRAS (FKs)
+
+    // FK para User
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    var user: User = User(),
+
+    // FK para Game
+    @ManyToOne
+    @JoinColumn(name = "game_id", nullable = false)
+    var game: Game = Game()
+
+    /* ----------------------------------------------------------------------- */
+) {
+    constructor() : this(null) // Construtor secundário simples
+}
