@@ -10,7 +10,7 @@ import jakarta.persistence.*
 class Wishlist(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
+    var id: Long = 0L,
 
     // CHAVES ESTRANGEIRAS (FKs)
 
@@ -26,5 +26,5 @@ class Wishlist(
 
     /* ----------------------------------------------------------------------- */
 ) {
-    constructor() : this(null) // Construtor secundário simples
+
 }

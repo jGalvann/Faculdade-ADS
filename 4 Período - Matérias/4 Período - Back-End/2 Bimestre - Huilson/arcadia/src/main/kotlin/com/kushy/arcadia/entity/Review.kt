@@ -8,7 +8,7 @@ import java.time.LocalDate
 class Review(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
+    var id: Long = 0L,
 
     // CHAVES ESTRANGEIRAS (FKs)
 
@@ -35,5 +35,5 @@ class Review(
 
     var dataReview: LocalDate = LocalDate.now()
 ) {
-    constructor() : this(null) // Construtor secundário simples
+
 }
