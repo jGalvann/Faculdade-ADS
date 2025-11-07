@@ -16,45 +16,68 @@ import org.springframework.web.filter.OncePerRequestFilter
     ele vai ter todas as permissões que um usuário comum tem, e as permissões de admin.
 
  */
-@Component
+@Component // indica ao security que deve gerenciar essa classe como um Bean.
 class SecurityFilter(
 
-    private val tokenService: TokenService,
-    private val userRepository: UserRepository // Still needed to fetch the user by email
+    private val tokenService: TokenService,              // responsável por gerar e validar os tokens JWT
+    private val userRepository: UserRepository           // usado para Buscar o usuário no banco pelo email extraído do token
 
 ) : OncePerRequestFilter() { // filtro que é executado UMA VEZ por request ( assim que funfa o stateless )
 
 
-    override fun doFilterInternal(
+    override fun doFilterInternal( // Métod principal
 
         request: HttpServletRequest,
         response: HttpServletResponse,
         filterChain: FilterChain
 
     ) {
-        val tokenJWT = recoverToken(request)
+        val tokenJWT = recoverToken(request) // Aqui ele pega o token do cabeçalho HTTP
+            // a estrutura de um Token JWT é a seguinte -> TokenJWK = Header.Payload.Signature
+            // basicamente é uma  string gigante separada por pontos.
+            // No header vai ter o algoritmo de assinatura, e o tipo do token ( HMAC256, e JWT )
+            // no payload vai ter as informações do usuário e o tempo de expiração
+            // e na signature, tem o resultado da criptografia do Header + Payload usando a secretKey.
+            // a Informação normalmente vem assim: Authorization: Bearer <token>, aí ele tira o Bearer e deixa só o token.
+
+
 
         if (tokenJWT != null) {
-            // 1. Validate the token and extract the login (email)
+
             val subject = tokenService.validateToken(tokenJWT)
+                // Aqui a ideia é validar o token e extrair o subject.
+                // a classe TokenService decodifica o tokenJWT, valida a assinatura e sua expiração, e retornar o subject ( email do usuário autenticado )
+                // se estiver inválido, ou expirado, vai ter retorno NULL
 
-            if (subject != null) {
-                // 2. Fetch the user details using the email (subject)
-                // O usuário retornado agora é um UserDetails válido.
+
+            if (subject != null) { // checa se o token tava podre veio
+
                 val usuario = userRepository.findByEmail(subject)
+                // Busca o usuário que corresponde ao subject.
+                // o retorno disso é uma entidade User, que tem o getUsername, getPassword e getAuthorities
+                // Agora, esse objeto é reconhecido pelo SpringSecurity
 
-                if (usuario != null) {
-                    // 3. Create the authentication object and set it in the Security Context.
-                    // O método getAuthorities() AGORA existe na nossa entidade User (Passo 1).
+                if (usuario != null) { // se n tem token, não tem user, se não tem user, não tem como autenticar nada.
+
                     val authentication = UsernamePasswordAuthenticationToken(usuario, null, usuario.authorities)
+                    // Esse é o objeto de autenticação interna do SpringBoot, que guarda:
+                    // quem é o usuário
+                    // senha
+                    // lista de permissões do mesmo
+
 
                     SecurityContextHolder.getContext().authentication = authentication
+                    // Aqui o usuário autenticado é injetado no contexto atual da requisição
+                    // a partir daqui o spring reconhece a requisição como autenticada.
+                    // qualquer endpoint protegido por @PreAuthorize ou @RolesAllowed sabem agora, quem é o usuário.
                 }
             }
         }
 
-        // 4. Continues the request flow to the next filter or to the Controller.
+
         filterChain.doFilter(request, response)
+            // depois que o filtro faz a verificação e registra o usuário autenticado, ele manda o request para frente.
+            // podendo ser para outro filtro, ou para um controller.
     }
 
 
