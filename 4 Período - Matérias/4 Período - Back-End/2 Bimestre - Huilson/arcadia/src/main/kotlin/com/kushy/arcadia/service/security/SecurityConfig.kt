@@ -49,7 +49,9 @@ class SecurityConfig( // Essa é uma classe meio que padrão do Spring, mas aind
 
 
     @Bean
-    fun authenticationManager(authenticationConfiguration: AuthenticationConfiguration): AuthenticationManager {
+    // Usa a anotação @Bean para mostrar que a função vai ser exportada no código inteiro, tirando a necessidade de importar manualmente a mesma.
+
+    fun authenticationManager(authenticationConfiguration: AuthenticationConfiguration): AuthenticationManager { // Coordena o processo de validação do usuário.
         return authenticationConfiguration.authenticationManager
     }
 
