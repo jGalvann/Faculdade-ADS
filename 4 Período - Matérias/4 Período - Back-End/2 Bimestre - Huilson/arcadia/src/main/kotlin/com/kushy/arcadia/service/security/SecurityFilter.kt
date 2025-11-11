@@ -32,6 +32,12 @@ class SecurityFilter(
         filterChain: FilterChain
 
     ) {
+
+        if (request.servletPath.startsWith("/auth")) {
+            filterChain.doFilter(request, response)
+            return
+        }
+
         val tokenJWT = recoverToken(request) // Aqui ele pega o token do cabeçalho HTTP
             // a estrutura de um Token JWT é a seguinte -> TokenJWK = Header.Payload.Signature
             // basicamente é uma  string gigante separada por pontos.
