@@ -47,7 +47,7 @@ class AuthController(
         val token = tokenService.generateToken(user)                                                // chama o tokenService.generateToken(user) para gerar o tokenJWT que vai ser usado adiante.
 
 
-        return ResponseEntity.ok(ResponseDTO(user.nickname, token))                                 // Vai retornar um 200 OK com um responseDTO, contendo o Nome do usuário e o Token,
+        return ResponseEntity.ok(ResponseDTO(user.nickname, token, user.role))                      // Vai retornar um 200 OK com um responseDTO, contendo o Nome do usuário e o Token,
     }
 
 
@@ -60,7 +60,7 @@ class AuthController(
 
         if (existingUser != null) {
 
-            return ResponseEntity.badRequest().body(ResponseDTO("Usuário já existe", null)) // se existe, vai retornar um bad request, e no DTO de resposta vai ter "User já existe"
+            return ResponseEntity.badRequest().body(ResponseDTO("Usuário já existe", null, null)) // se existe, vai retornar um bad request, e no DTO de resposta vai ter "User já existe"
         }
 
         val encryptedPassword = passwordEncoder.encode(body.password)                               // Cria o hash da senha com o PasswordEncoder | BCrypt
@@ -81,6 +81,6 @@ class AuthController(
                                                                                                     // .save é um métod do JpaRepository
 
 
-        return ResponseEntity.ok(ResponseDTO(savedUser.nickname, null))                      // retorna o responseDTO com o nome do usuário, mas sem token
+        return ResponseEntity.ok(ResponseDTO(savedUser.nickname, null, null))       // retorna o responseDTO com o nome do usuário, mas sem token
     }
 }
