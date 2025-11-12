@@ -30,6 +30,7 @@ class SecurityConfig( // Essa é uma classe meio que padrão do Spring, mas aind
 
 
         return http
+            .cors{} // ativa o suporte ao CORS e usa as coisa do CorsConfig
             .csrf { csrf -> csrf.disable() } // csrf ( Cross-Site Request Forgery ) -> Desabilita essa parada pq vms usar o JWT QUE É STATELESS
             .sessionManagement { session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }        // Define a política da sessão como STATELESS
             .authorizeHttpRequests { authorize ->
