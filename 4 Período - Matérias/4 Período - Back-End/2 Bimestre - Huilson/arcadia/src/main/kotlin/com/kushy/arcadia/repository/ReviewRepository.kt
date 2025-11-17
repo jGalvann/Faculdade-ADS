@@ -7,7 +7,13 @@ import org.springframework.stereotype.Repository
 @Repository
 interface ReviewRepository : JpaRepository<Review, Long> {
 
-    // busca as reviews feitas por um user específico.
-    fun findAllByUserId(userId: Long): List<Review>
+    // Verifica se já existe uma review para um usuário e jogo específicos
+    // Retorna true se existir, false caso contrário
+    fun existsByUserIdAndGameId(userId: Long, gameId: Long): Boolean
 
+    // Busca todas as reviews feitas por um usuário
+    fun findByUserId(userId: Long): List<Review>
+
+    // Busca todas as reviews relacionadas a um jogo
+    fun findByGameId(gameId: Long): List<Review>
 }

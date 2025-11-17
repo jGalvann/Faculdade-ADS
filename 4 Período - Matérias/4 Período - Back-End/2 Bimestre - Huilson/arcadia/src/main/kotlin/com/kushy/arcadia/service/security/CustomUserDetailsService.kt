@@ -32,7 +32,7 @@ class CustomUserDetailsService(
             // depois, ele usa o UserRepository para buscar esse email no banco de dados.
             // a pesquisa retorna um objeto User, que implementa o UserDetails
             // Sempre que implementar o userDetails, é pq o spring precisa dos métodos dessa parada, que são os getters para nome(ou email), senha, e as perms
-            //
+
 
         return userRepository.findByEmail(username) ?: throw UsernameNotFoundException("Usuário não encontrado com o email: $username")
     }       // dai aqui tem o grande elvis, se for null o da esquerda, executa o da direita.

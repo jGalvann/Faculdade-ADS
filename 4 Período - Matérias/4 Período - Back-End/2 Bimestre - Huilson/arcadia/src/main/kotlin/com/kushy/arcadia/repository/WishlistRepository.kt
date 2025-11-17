@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository
 @Repository
 interface WishlistRepository : JpaRepository<Wishlist, Long> {
 
-    // busca os itens da wishlist de um usuário especifico
-    fun findAllByUserId(userId: Long): List<Wishlist>
+    // Verifica se já existe um item na wishlist para o usuário e jogo
+    fun existsByUserIdAndGameId(userId: Long, gameId: Long): Boolean
 
-    // Um métod para checar se o jogo já está na Wishlist ( evitar duplicatas )
-    fun findByUserIdAndGameId(userId: Long, gameId: Long): Wishlist?
+    // Busca todos os itens da wishlist de um usuário
+    fun findByUserId(userId: Long): List<Wishlist>
 }
