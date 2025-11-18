@@ -5,6 +5,11 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 
+/*
+    CORS -> cross-origin resource sharing.
+    Restringe como o código JS de uma página pode interagir com recursos de um dóminio diferente.
+
+ */
 @Configuration
 class CorsConfig : WebMvcConfigurer {
     override fun addCorsMappings(registry: CorsRegistry) {

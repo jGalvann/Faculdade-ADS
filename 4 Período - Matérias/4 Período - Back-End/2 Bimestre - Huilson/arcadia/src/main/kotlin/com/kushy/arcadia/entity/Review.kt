@@ -26,7 +26,7 @@ class Review(
 
     /* ---------------------------------------------------------------------------------------------------- */
 
-    var nota: Float? = null, // Nota de 0.5 a 5.0 por isso float
+    var nota: Float, // Nota de 0.5 a 5.0 por isso float
 
     @Lob // lob = textão
     var textReview: String = "",

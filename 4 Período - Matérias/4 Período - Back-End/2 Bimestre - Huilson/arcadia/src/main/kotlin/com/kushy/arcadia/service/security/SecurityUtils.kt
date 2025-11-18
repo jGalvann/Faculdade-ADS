@@ -13,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException
     Como ia ter q fzr essa validação varias vezes, mais facil criar isso aqui.
  */
 class SecurityUtils {
+
     fun getAuthenticatedUser(): User { // recebe um usuário
         val auth = SecurityContextHolder.getContext().authentication                                                        // Pega o contexto anteriormente guardado
             ?: throw ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado")                            // se não tiver, retornar um "seu autorização"
@@ -23,4 +24,12 @@ class SecurityUtils {
         // assume que User.id não é null quando autenticado
         return principal
     }
+
+    fun isAdmin(): Boolean {                                                                                                // Fun para checar as roles do usuário
+        val auth = SecurityContextHolder.getContext().authentication
+            ?: throw ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuário não autenticado")
+
+        return auth.authorities.any { it.authority == "ROLE_ADMIN" }
+    }
+
 }

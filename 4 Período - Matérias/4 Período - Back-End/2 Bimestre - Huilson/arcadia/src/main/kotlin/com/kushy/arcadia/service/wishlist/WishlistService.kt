@@ -1,59 +1,88 @@
-package com.kushy.arcadia.service
+package com.kushy.arcadia.service.wishlist
+
 
 import com.kushy.arcadia.dto.WishlistDTO
+import com.kushy.arcadia.dto.WishlistResponseDTO
 import com.kushy.arcadia.entity.Game
 import com.kushy.arcadia.entity.User
 import com.kushy.arcadia.entity.Wishlist
 import com.kushy.arcadia.repository.GameRepository
 import com.kushy.arcadia.repository.UserRepository
 import com.kushy.arcadia.repository.WishlistRepository
+import com.kushy.arcadia.service.security.SecurityUtils
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties.Http
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 
 @Service
 class WishlistService(
     private val wishlistRepository: WishlistRepository,
     private val userRepository: UserRepository,
-    private val gameRepository: GameRepository
+    private val gameRepository: GameRepository,
+    private val securityUtils: SecurityUtils,
 ) {
 
-    fun addToWishlist(dto: WishlistDTO): Wishlist {
 
-        val user: User = userRepository.findById(dto.userId)
-            .orElseThrow { RuntimeException("Usuário não encontrado") }
+    fun addToWishlist(dto: WishlistDTO): WishlistResponseDTO {
 
-        val game: Game = gameRepository.findById(dto.gameId)
-            .orElseThrow { RuntimeException("Jogo não encontrado") }
+        val authUser = securityUtils.getAuthenticatedUser()
+
+        val game = gameRepository.findById(dto.gameId)
+            .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND,"Jogo não encontrado") }
 
         // Evita duplicação manualmente (e também pelo UniqueConstraint)
-        if (wishlistRepository.existsByUserIdAndGameId(dto.userId, dto.gameId)) {
-            throw IllegalArgumentException("Este jogo já está na wishlist do usuário.")
+        if (wishlistRepository.existsByUserIdAndGameId(authUser.id, dto.gameId)) {
+            throw ResponseStatusException(HttpStatus.CONFLICT,"Este jogo já está na wishlist do usuário.")
         }
 
         val wishlist = Wishlist(
-            user = user,
+            user = authUser,
             game = game
         )
 
-        return wishlistRepository.save(wishlist)
+        return wishlistRepository.save(wishlist).toDTO()
     }
 
+
     fun removeFromWishlist(id: Long) {
-        if (!wishlistRepository.existsById(id)) {
-            throw RuntimeException("Item da wishlist não encontrado.")
+        val item = wishlistRepository.findById(id)
+            .orElseThrow{ ResponseStatusException(HttpStatus.NOT_FOUND, "Item da wishlist não encontrado")}
+
+        val authUser = securityUtils.getAuthenticatedUser()
+
+        if (item.user.id != authUser.id) {
+            throw ResponseStatusException(HttpStatus.FORBIDDEN, "Voce não pode remover itens da wishlist de outro usuário" )
         }
+
         wishlistRepository.deleteById(id)
     }
 
-    fun getWishlistByUser(userId: Long): List<Wishlist> =
-        wishlistRepository.findByUserId(userId)
 
-    fun getRandomWishlistItem(userId: Long): Wishlist {
-        val items = wishlistRepository.findByUserId(userId)
+    fun getRandomWishlistItem(): WishlistResponseDTO {
+
+        val authUser = securityUtils.getAuthenticatedUser()
+        val items = wishlistRepository.findByUserId(authUser.id!!)
 
         if (items.isEmpty()) {
-            throw RuntimeException("A wishlist do usuário está vazia.")
+            throw ResponseStatusException(HttpStatus.NOT_FOUND, "Sua wishlist está vazia")
         }
 
-        return items.random()
+        return items.random().toDTO()
     }
+
+    fun getCurrentUserWishlist(): List<WishlistResponseDTO> {
+        val authUser = securityUtils.getAuthenticatedUser()
+
+        return wishlistRepository.findByUserId(authUser.id!!)
+            .map { it.toDTO() }
+    }
+
+
+    fun Wishlist.toDTO() = WishlistResponseDTO(
+        id = this.id,
+        gameId = this.game.id!!,
+    )
+
+
 }
