@@ -1,5 +1,6 @@
 package com.kushy.arcadia.service.security
 
+import com.kushy.arcadia.entity.User
 import com.kushy.arcadia.repository.UserRepository
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
@@ -58,7 +59,7 @@ class SecurityFilter(
 
             if (subject != null) { // checa se o token tava podre veio
 
-                val usuario = userRepository.findByEmail(subject)
+                val usuario: User? = userRepository.findByEmail(subject)
                 // Busca o usuário que corresponde ao subject.
                 // o retorno disso é uma entidade User, que tem o getUsername, getPassword e getAuthorities
                 // Agora, esse objeto é reconhecido pelo SpringSecurity
