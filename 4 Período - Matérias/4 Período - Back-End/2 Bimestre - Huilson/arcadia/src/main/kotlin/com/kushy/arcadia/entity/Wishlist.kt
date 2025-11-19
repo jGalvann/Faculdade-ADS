@@ -12,17 +12,15 @@ class Wishlist(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L,
 
-    // CHAVES ESTRANGEIRAS (FKs)
 
-    // FK para User
+
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     var user: User = User(),
 
-    // FK para Game
-    @ManyToOne
-    @JoinColumn(name = "game_id", nullable = false)
-    var game: Game = Game()
+    @Column(name = "game_id", nullable = false)
+    var rawgGameId: Long,
 
     /* ----------------------------------------------------------------------- */
 ) {

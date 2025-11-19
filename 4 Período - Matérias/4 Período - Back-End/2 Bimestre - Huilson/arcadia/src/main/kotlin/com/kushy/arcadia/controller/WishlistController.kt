@@ -4,6 +4,7 @@ import com.kushy.arcadia.dto.WishlistDTO
 import com.kushy.arcadia.dto.WishlistResponseDTO
 import com.kushy.arcadia.entity.Wishlist
 import com.kushy.arcadia.service.wishlist.WishlistService
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -17,6 +18,7 @@ class WishlistController(
 ) {
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)                                             // 201
     fun addToWishlist(@RequestBody dto: WishlistDTO): WishlistResponseDTO {
         return wishlistService.addToWishlist(dto)
     }

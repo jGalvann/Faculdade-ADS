@@ -4,7 +4,9 @@ import jakarta.persistence.*
 import java.time.LocalDate
 
 @Entity
-@Table(name = "reviews")
+@Table(name = "reviews", uniqueConstraints = [
+    UniqueConstraint(columnNames = ["user_id","game_id"]) // não permite varias reviews do mesmo usuário para o mesmo jogo.
+])
 class Review(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,16 +21,13 @@ class Review(
     @JoinColumn(name = "user_id", nullable = false)
     var user: User = User(), // A Chave Estrangeira armazena o objeto User
 
-    // 2. FK para Game: Muitas Reviews (Many) referenciam Um Game (One).
-    @ManyToOne
-    @JoinColumn(name = "game_id", nullable = false)
-    var game: Game = Game(), // A Chave Estrangeira armazena o objeto Game
+    @Column(name= "game_id", nullable = false)
+    var rawgGameId: Long,
 
-    /* ---------------------------------------------------------------------------------------------------- */
 
     var nota: Float, // Nota de 0.5 a 5.0 por isso float
 
-    @Lob // lob = textão
+    @Column(columnDefinition = "TEXT")
     var textReview: String = "",
 
     var status: String = "", // zerou, jogando, abandonado... // n vou fzr uma enum class para isso, melhor deixar essa parte com o front.

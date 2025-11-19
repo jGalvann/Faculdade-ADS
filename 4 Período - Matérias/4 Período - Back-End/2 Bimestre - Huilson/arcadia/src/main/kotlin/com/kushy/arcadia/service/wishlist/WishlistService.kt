@@ -3,10 +3,8 @@ package com.kushy.arcadia.service.wishlist
 
 import com.kushy.arcadia.dto.WishlistDTO
 import com.kushy.arcadia.dto.WishlistResponseDTO
-import com.kushy.arcadia.entity.Game
 import com.kushy.arcadia.entity.User
 import com.kushy.arcadia.entity.Wishlist
-import com.kushy.arcadia.repository.GameRepository
 import com.kushy.arcadia.repository.UserRepository
 import com.kushy.arcadia.repository.WishlistRepository
 import com.kushy.arcadia.service.security.SecurityUtils
@@ -18,27 +16,21 @@ import org.springframework.web.server.ResponseStatusException
 @Service
 class WishlistService(
     private val wishlistRepository: WishlistRepository,
-    private val userRepository: UserRepository,
-    private val gameRepository: GameRepository,
     private val securityUtils: SecurityUtils,
 ) {
-
 
     fun addToWishlist(dto: WishlistDTO): WishlistResponseDTO {
 
         val authUser = securityUtils.getAuthenticatedUser()
 
-        val game = gameRepository.findById(dto.gameId)
-            .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND,"Jogo não encontrado") }
-
         // Evita duplicação manualmente (e também pelo UniqueConstraint)
-        if (wishlistRepository.existsByUserIdAndGameId(authUser.id, dto.gameId)) {
+        if (wishlistRepository.existsByUserIdAndRawgGameId(authUser.id, dto.gameId)) {
             throw ResponseStatusException(HttpStatus.CONFLICT,"Este jogo já está na wishlist do usuário.")
         }
 
         val wishlist = Wishlist(
             user = authUser,
-            game = game
+            rawgGameId = dto.gameId
         )
 
         return wishlistRepository.save(wishlist).toDTO()
@@ -81,7 +73,7 @@ class WishlistService(
 
     fun Wishlist.toDTO() = WishlistResponseDTO(
         id = this.id,
-        gameId = this.game.id!!,
+        gameId = this.rawgGameId,
     )
 
 

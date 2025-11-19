@@ -6,6 +6,7 @@ import com.kushy.arcadia.dto.ReviewUpdateDTO
 import com.kushy.arcadia.entity.User
 import com.kushy.arcadia.service.review.ReviewService
 import com.kushy.arcadia.service.security.SecurityUtils
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -13,13 +14,13 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin(origins = ["*"])
 class ReviewController(
     private val reviewService: ReviewService,
-    private val securityUtils: SecurityUtils
 ) {
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody dto: ReviewCreateDTO): ReviewResponseDTO {
-        val user = securityUtils.getAuthenticatedUser()
-        return reviewService.createReview(dto, user)
+
+        return reviewService.createReview(dto)
     }
 
     @GetMapping("/{id}")
@@ -42,14 +43,15 @@ class ReviewController(
         @PathVariable id: Long,
         @RequestBody dto: ReviewUpdateDTO
     ): ReviewResponseDTO {
-        val user = securityUtils.getAuthenticatedUser()
-        return reviewService.updateReview(id, dto, user)
+
+        return reviewService.updateReview(id, dto)
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(@PathVariable id: Long) {
-        val user = securityUtils.getAuthenticatedUser()
-        reviewService.deleteReview(id, user)
+
+        reviewService.deleteReview(id)
     }
 }
 

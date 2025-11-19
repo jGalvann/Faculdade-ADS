@@ -1,6 +1,5 @@
 package com.kushy.arcadia.dto
 
-import java.time.Instant
 
 data class ReviewResponseDTO(
     val id: Long,
@@ -8,5 +7,6 @@ data class ReviewResponseDTO(
     val gameId: Long,
     val nota: Float,
     val textReview: String?,
-    val status: String?
+    val status: String?,
+    val dataReview: String,
 )
