@@ -37,7 +37,7 @@ class ReviewService(
             rawgGameId = dto.gameId,
             nota = dto.nota,
             textReview = dto.textReview,
-            status = dto.status
+            status = dto.status,
         )
 
         return reviewRepository.save(review).toDTO()

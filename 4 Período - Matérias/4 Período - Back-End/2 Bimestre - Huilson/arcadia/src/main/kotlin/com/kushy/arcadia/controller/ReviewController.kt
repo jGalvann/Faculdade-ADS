@@ -57,7 +57,7 @@ class ReviewController(
         return reviewService.addDislike(id)
     }
 
-    
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(@PathVariable id: Long) {
