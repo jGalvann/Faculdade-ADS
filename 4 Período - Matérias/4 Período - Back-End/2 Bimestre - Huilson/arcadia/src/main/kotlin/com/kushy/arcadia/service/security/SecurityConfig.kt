@@ -37,7 +37,7 @@ class SecurityConfig( // Essa é uma classe meio que padrão do Spring, mas aind
                 authorize   // Aqui ele faz com que os endPoints abaixo não precisem de autenticação.
                     .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                     .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/games").permitAll()
+                    .requestMatchers("/error").permitAll()
 
                     .anyRequest().authenticated() // Qualquer outra request, o user vai precisar estar autenticado
                                                   // Caso não esteja, vai ter um 403 Forbidden pro maluco
