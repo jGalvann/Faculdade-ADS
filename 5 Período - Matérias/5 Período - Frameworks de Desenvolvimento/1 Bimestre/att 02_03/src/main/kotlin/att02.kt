@@ -47,6 +47,8 @@ fun main() {
         numLista.add(numAtual)
     }
 
-    
+//  agr a ideia é montar 2 pilhas, uma de numeros e outra de operadores.
+// percorrer a lista -> se for numero
+// se for operador -> verificar a prioridade // ver essa lógica melhor.
 
 }
