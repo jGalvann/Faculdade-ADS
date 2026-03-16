@@ -30,6 +30,38 @@ export default function App() {
             />
           </View>
         </View>
+
+        <View style={styles.botaoEspecial}>
+          <Button
+            color="#015B61"
+            title="TRUCO"
+            onPress={() => setPontuacaoNos(pontuacaoNos + 3)}
+          />
+        </View>
+
+        <View style={styles.botaoEspecial}>
+          <Button
+            color="#022363"
+            title="SEISSS"
+            onPress={() => setPontuacaoNos(pontuacaoNos + 6)}
+          />
+        </View>
+
+        <View style={styles.botaoEspecial}>
+          <Button
+            color="#4F0263"
+            title="NOVEEE"
+            onPress={() => setPontuacaoNos(pontuacaoNos + 9)}
+          />
+        </View>
+
+        <View style={styles.botaoEspecial}>
+          <Button
+            color="#630102"
+            title="DOZI"
+            onPress={() => setPontuacaoNos(pontuacaoNos + 12)}
+          />
+        </View>
       </View>
 
       <View style={styles.containerBotao}>
@@ -54,6 +86,38 @@ export default function App() {
               }
             />
           </View>
+        </View>
+
+        <View style={styles.botaoEspecial}>
+          <Button
+            color="#015B61"
+            title="TRUCO"
+            onPress={() => setPontuacaoEles(pontuacaoEles + 3)}
+          />
+        </View>
+
+        <View style={styles.botaoEspecial}>
+          <Button
+            color="#022363"
+            title="SEISSS"
+            onPress={() => setPontuacaoEles(pontuacaoEles + 6)}
+          />
+        </View>
+
+        <View style={styles.botaoEspecial}>
+          <Button
+            color="#4F0263"
+            title="NOVEEE"
+            onPress={() => setPontuacaoEles(pontuacaoEles + 9)}
+          />
+        </View>
+
+        <View style={styles.botaoEspecial}>
+          <Button
+            color="#630102"
+            title="DOZI"
+            onPress={() => setPontuacaoEles(pontuacaoEles + 12)}
+          />
         </View>
       </View>
     </View>
@@ -92,5 +156,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     width: "60%",
+  },
+  botaoEspecial: {
+    width: "67%",
+    marginVertical: 5,
   },
 });
