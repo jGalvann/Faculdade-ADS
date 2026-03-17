@@ -4,19 +4,47 @@ import { StyleSheet, Text, View, Button } from "react-native";
 export default function App() {
   const [pontuacaoNos, setPontuacaoNos] = useState(0);
   const [pontuacaoEles, setPontuacaoEles] = useState(0);
+  const [vitoriaNos, setVitoriaNos] = useState(0);
+  const [vitoriaEles, setVitoriaEles] = useState(0);
+
+  const adicionarPontosNos = (pontos) => {
+    let novaPontuacao = pontuacaoNos + pontos;
+    if (novaPontuacao >= 12) {
+      setPontuacaoNos(0);
+      setPontuacaoEles(0);
+      setVitoriaNos(vitoriaNos + 1);
+    } else {
+      setPontuacaoNos(novaPontuacao);
+    }
+  }
+
+  const adicionarPontosEles = (pontos) => {
+    let novaPontuacao = pontuacaoEles + pontos;
+    if (novaPontuacao >= 12) {
+      setPontuacaoNos(0);
+      setPontuacaoEles(0);
+      setVitoriaEles(vitoriaEles + 1);
+    } else {
+      setPontuacaoEles(novaPontuacao);
+    }
+    
+  }
+
 
   return (
     <View style={styles.container}>
+
       <View style={styles.containerBotao}>
         <Text style={styles.titulo}> Nós</Text>
         <Text style={styles.numero}>{pontuacaoNos}</Text>
+        <Text style={styles.wins}> Ganhou: {vitoriaNos} </Text>
 
         <View style={styles.fileiraBotao}>
           <View style={styles.botao}>
             <Button
               color="#01633d"
               title="+"
-              onPress={() => setPontuacaoNos(pontuacaoNos + 1)}
+              onPress={() => adicionarPontosNos(1)}
             />
           </View>
 
@@ -35,7 +63,7 @@ export default function App() {
           <Button
             color="#015B61"
             title="TRUCO"
-            onPress={() => setPontuacaoNos(pontuacaoNos + 3)}
+            onPress={() => adicionarPontosNos(3)}
           />
         </View>
 
@@ -43,7 +71,7 @@ export default function App() {
           <Button
             color="#022363"
             title="SEISSS"
-            onPress={() => setPontuacaoNos(pontuacaoNos + 6)}
+            onPress={() => adicionarPontosNos(6)}
           />
         </View>
 
@@ -51,7 +79,7 @@ export default function App() {
           <Button
             color="#4F0263"
             title="NOVEEE"
-            onPress={() => setPontuacaoNos(pontuacaoNos + 9)}
+            onPress={() => adicionarPontosNos(9)}
           />
         </View>
 
@@ -59,7 +87,7 @@ export default function App() {
           <Button
             color="#630102"
             title="DOZI"
-            onPress={() => setPontuacaoNos(pontuacaoNos + 12)}
+            onPress={() => adicionarPontosNos(12)}
           />
         </View>
       </View>
@@ -67,13 +95,14 @@ export default function App() {
       <View style={styles.containerBotao}>
         <Text style={styles.titulo}> Eles</Text>
         <Text style={styles.numero}>{pontuacaoEles}</Text>
+        <Text style={styles.wins}> Ganhou: {vitoriaEles} </Text>
 
         <View style={styles.fileiraBotao}>
           <View style={styles.botao}>
             <Button
               color="#01633d"
               title="+"
-              onPress={() => setPontuacaoEles(pontuacaoEles + 1)}
+              onPress={() => adicionarPontosEles(3)}
             />
           </View>
 
@@ -92,7 +121,7 @@ export default function App() {
           <Button
             color="#015B61"
             title="TRUCO"
-            onPress={() => setPontuacaoEles(pontuacaoEles + 3)}
+            onPress={() => adicionarPontosEles(3)}
           />
         </View>
 
@@ -100,7 +129,7 @@ export default function App() {
           <Button
             color="#022363"
             title="SEISSS"
-            onPress={() => setPontuacaoEles(pontuacaoEles + 6)}
+            onPress={() => adicionarPontosEles(6)}
           />
         </View>
 
@@ -108,7 +137,7 @@ export default function App() {
           <Button
             color="#4F0263"
             title="NOVEEE"
-            onPress={() => setPontuacaoEles(pontuacaoEles + 9)}
+            onPress={() => adicionarPontosEles(9)}
           />
         </View>
 
@@ -116,7 +145,7 @@ export default function App() {
           <Button
             color="#630102"
             title="DOZI"
-            onPress={() => setPontuacaoEles(pontuacaoEles + 12)}
+            onPress={() => adicionarPontosEles(12)}
           />
         </View>
       </View>
@@ -140,7 +169,7 @@ const styles = StyleSheet.create({
     fontSize: 100,
     fontWeight: "bold",
     color: "#333",
-    marginBottom: 50,
+    marginBottom: 0,
   },
   containerBotao: {
     flex: 1,
@@ -161,4 +190,10 @@ const styles = StyleSheet.create({
     width: "67%",
     marginVertical: 5,
   },
+  wins: {
+    fontSize: 18,
+    marginBottom: 50,
+    fontWeight: "bold",
+  },
+
 });
