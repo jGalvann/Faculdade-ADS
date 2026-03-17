@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 
 export default function App() {
   const [pontuacaoNos, setPontuacaoNos] = useState(0);
@@ -45,6 +45,14 @@ export default function App() {
 
   return (
   <View style={styles.containerGrande}>
+
+      <View style={styles.header}>
+        <Image 
+          source={require('./assets/iconUnipar.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </View>
 
     <View style={styles.containerHorizontal}>
       
@@ -125,7 +133,7 @@ export default function App() {
         </View>
     </View>
 
-    </View>
+  </View>
 
   );
 }
@@ -186,6 +194,17 @@ const styles = StyleSheet.create({
   botaoControle: {
     width: "40%",
     marginVertical: 5,
+  },
+  logo: {
+    width: 200,
+    height: 80,
+    alignItems: "center",
+  },
+  header: {
+    width: '100%',
+    alignItems: 'center', 
+    justifyContent: 'center',
+    marginBottom: 10,
   },
 
 });
