@@ -30,143 +30,124 @@ export default function App() {
     
   }
 
+  const reiniciarRodada = () => {
+    setPontuacaoNos(0);
+    setPontuacaoEles(0);
+  };
+
+  const reiniciarJogo = () => {
+    setPontuacaoNos(0);
+    setPontuacaoEles(0);
+    setVitoriaNos(0);
+    setVitoriaEles(0);
+  };
+
 
   return (
-    <View style={styles.container}>
+  <View style={styles.containerGrande}>
 
-      <View style={styles.containerBotao}>
+    <View style={styles.containerHorizontal}>
+      
+    <View style={styles.containerBotao}>
         <Text style={styles.titulo}> Nós</Text>
         <Text style={styles.numero}>{pontuacaoNos}</Text>
         <Text style={styles.wins}> Ganhou: {vitoriaNos} </Text>
 
         <View style={styles.fileiraBotao}>
+
           <View style={styles.botao}>
-            <Button
-              color="#01633d"
-              title="+"
-              onPress={() => adicionarPontosNos(1)}
-            />
+            <Button color="#01633d"  title="+"  onPress={() => adicionarPontosNos(1)} />
           </View>
 
           <View style={styles.botao}>
-            <Button
-              color="#87092a"
-              title="-"
-              onPress={() =>
-                setPontuacaoNos(pontuacaoNos > 0 ? pontuacaoNos - 1 : 0)
-              }
-            />
+            <Button color="#87092a"  title="-"  onPress={() =>setPontuacaoNos(pontuacaoNos > 0 ? pontuacaoNos - 1 : 0)}/>
           </View>
         </View>
 
         <View style={styles.botaoEspecial}>
-          <Button
-            color="#015B61"
-            title="TRUCO"
-            onPress={() => adicionarPontosNos(3)}
-          />
+          <Button  color="#015B61"  title="TRUCO"  onPress={() => adicionarPontosNos(3)}/>
         </View>
 
         <View style={styles.botaoEspecial}>
-          <Button
-            color="#022363"
-            title="SEISSS"
-            onPress={() => adicionarPontosNos(6)}
-          />
+          <Button  color="#022363"  title="SEISSS"  onPress={() => adicionarPontosNos(6)}/>
         </View>
 
         <View style={styles.botaoEspecial}>
-          <Button
-            color="#4F0263"
-            title="NOVEEE"
-            onPress={() => adicionarPontosNos(9)}
-          />
+          <Button  color="#4F0263"  title="NOVEEE"  onPress={() => adicionarPontosNos(9)}/>
         </View>
 
         <View style={styles.botaoEspecial}>
-          <Button
-            color="#630102"
-            title="DOZI"
-            onPress={() => adicionarPontosNos(12)}
-          />
+          <Button  color="#630102"  title="DOZI"   onPress={() => adicionarPontosNos(12)}/>
         </View>
-      </View>
+    </View>
 
-      <View style={styles.containerBotao}>
+    <View style={styles.containerBotao}>
         <Text style={styles.titulo}> Eles</Text>
         <Text style={styles.numero}>{pontuacaoEles}</Text>
         <Text style={styles.wins}> Ganhou: {vitoriaEles} </Text>
 
         <View style={styles.fileiraBotao}>
           <View style={styles.botao}>
-            <Button
-              color="#01633d"
-              title="+"
-              onPress={() => adicionarPontosEles(3)}
-            />
+            <Button  color="#01633d"   title="+"   onPress={() => adicionarPontosEles(1)}/>
           </View>
 
           <View style={styles.botao}>
-            <Button
-              color="#87092a"
-              title="-"
-              onPress={() =>
-                setPontuacaoEles(pontuacaoEles > 0 ? pontuacaoEles - 1 : 0)
-              }
-            />
+            <Button  color="#87092a"   title="-"   onPress={() => setPontuacaoEles(pontuacaoEles > 0 ? pontuacaoEles - 1 : 0)}/>
           </View>
         </View>
 
         <View style={styles.botaoEspecial}>
-          <Button
-            color="#015B61"
-            title="TRUCO"
-            onPress={() => adicionarPontosEles(3)}
-          />
+          <Button    color="#015B61"   title="TRUCO"   onPress={() => adicionarPontosEles(3)}/>
         </View>
 
         <View style={styles.botaoEspecial}>
-          <Button
-            color="#022363"
-            title="SEISSS"
-            onPress={() => adicionarPontosEles(6)}
-          />
+          <Button   color="#022363"   title="SEISSS"   onPress={() => adicionarPontosEles(6)}/>
         </View>
 
         <View style={styles.botaoEspecial}>
-          <Button
-            color="#4F0263"
-            title="NOVEEE"
-            onPress={() => adicionarPontosEles(9)}
-          />
+          <Button   color="#4F0263"   title="NOVEEE"   onPress={() => adicionarPontosEles(9)}/>
         </View>
 
         <View style={styles.botaoEspecial}>
-          <Button
-            color="#630102"
-            title="DOZI"
-            onPress={() => adicionarPontosEles(12)}
-          />
+          <Button   color="#630102"   title="DOZI"   onPress={() => adicionarPontosEles(12)} />
         </View>
-      </View>
+
     </View>
+
+    </View>
+
+    <View style={styles.containerControle}>
+        <View style={styles.botaoControle}>
+          <Button title="REINICIAR" color="#19090a" onPress={() => reiniciarRodada()} />
+        </View>
+        <View style={styles.botaoControle}>
+          <Button title="NOVO JOGO" color="#19090a" onPress={() => reiniciarJogo()} />
+        </View>
+    </View>
+
+    </View>
+
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerGrande: {
     flex: 1,
-    flexDirection: "row",
     backgroundColor: "#fff",
-    alignItems: "center",
+    paddingTop: 50,
   },
+  containerHorizontal: {
+    flexDirection: "row",
+    flex: 4,
+  },
+
   titulo: {
     fontSize: 26,
     fontWeight: "bold",
     marginBottom: 5,
   },
   numero: {
-    fontSize: 100,
+    fontSize: 80,
     fontWeight: "bold",
     color: "#333",
     marginBottom: 0,
@@ -194,6 +175,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 50,
     fontWeight: "bold",
+  },
+  containerControle: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderTopWidth: 1,
+    borderTopColor: "#eee",
+  },
+  botaoControle: {
+    width: "40%",
+    marginVertical: 5,
   },
 
 });
